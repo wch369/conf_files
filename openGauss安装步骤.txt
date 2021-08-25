@@ -1,0 +1,24 @@
+1. 确认依赖包：
+    rpm -qa | grep libaio-devel
+    rpm -qa | grep flex
+    rpm -qa | grep bison
+    rpm -qa | grep ncurses-devel
+    rpm -qa | grep glibc-devel
+    rpm -qa | grep patch
+    rpm -qa | grep redhat-lsb-core
+    rpm -qa | grep readline-devel 
+    rpm -qa | grep libnsl
+2. 安装依赖包
+yum install -y libaio-devel flex bison ncurses-devel glibc-devel patch redhat-lsb-core readline-devel libnsl
+
+3. cd /opt/software/openGauss/simpleInstall, 修改install.sh安装脚本，修改最大连接数为：max_connection=500 
+4. sh install.sh  -w root@123
+5. 安装完成后，开放可远程连接，
+    修改文件：/opt/software/openGauss/data/single_node/postgresql.conf里的listen_addresses = '*'
+    修改文件：/opt/software/openGauss/data/single_node/pg_hba.conf, 添加一行：host    all             all             0.0.0.0/0               sha256
+6. 重启数据库
+    gs_ctl restart -D $GAUSSHOME/data/single_node -Z single_node
+
+gs_ctl start|stop|restart -D $GAUSSHOME/data/single_node -Z single_node
+gs_ctl start -D $GAUSSHOME/data/single_node -Z single_node
+
