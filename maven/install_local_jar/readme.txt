@@ -1,0 +1,2 @@
+1.将要安装到本地maven仓库的jar包放在pom所在目录的lib/下
+1.更改pom文件里jar的名字、id等信息
